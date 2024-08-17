@@ -6,7 +6,6 @@ import { NavLink, useNavigate } from "react-router-dom";
 
 // hooks
 import useToggleDrawerContext from "../hooks/useToggleDrawerContext";
-import { useEffect } from "react";
 
 // Material UI Component
 import Drawer from '@mui/material/Drawer';
@@ -35,20 +34,10 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 }));
 
 export default function NavigationBar() {
-  // context
+  // context & states
   const { drawerStatus, toggleDrawerStatus } = useToggleDrawerContext();
   const theme = useTheme();
   const navigate = useNavigate();
-
-  // function expression
-  const handleHamburgerOnClick = () => {
-    toggleDrawerStatus();
-  }
-
-  // effects
-  useEffect(() => {
-    console.log(drawerStatus);
-  },[drawerStatus])
 
   return (
     <nav className="Navigation">
@@ -61,7 +50,7 @@ export default function NavigationBar() {
         <NavLink to="order-payment">Make Payment</NavLink>
       </section>
       <section className="hamburger">
-        <button onClick={handleHamburgerOnClick}><img src={hamburgerIcon} alt="hamburger-icon" className="hamburger-icon" /></button>
+        <button onClick={toggleDrawerStatus}><img src={hamburgerIcon} alt="hamburger-icon" className="hamburger-icon" /></button>
       </section>
       
       <Drawer anchor="right" open={drawerStatus} onClose={toggleDrawerStatus} sx={{ width: drawerWidth, flexShrink: 0, '& .MuiDrawer-paper': {width: drawerWidth, backgroundColor:"black"} }}>

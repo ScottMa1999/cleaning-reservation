@@ -12,20 +12,23 @@ import { Routes, Route } from "react-router-dom";
 
 // Context
 import { ToggleDrawerContextProvider } from "./context/ToggleDrawerContext";
+import { CarServiceContextProvider } from "./context/CarServiceContext";
 
 function App() {
   return (
     <section className="Home">
       <ToggleDrawerContextProvider>
-        <NavigationBar />
-        <Routes>
-          <Route path="/" element={<HomePage />}/>
-          <Route path="residential" element={<ResidentialPage />} />
-          <Route path="car" element={<CarCleaningPage />} />
-          <Route path="order-status" element={<OrderStatusPage />} />
-          <Route path="order-payment" element={<OrderPaymentPage />} />
-          <Route path="*" element={<ErrorPage />} />
-        </Routes>
+        <CarServiceContextProvider>
+          <NavigationBar />
+          <Routes>
+            <Route path="/" element={<HomePage />}/>
+            <Route path="residential" element={<ResidentialPage />} />
+            <Route path="car" element={<CarCleaningPage />} />
+            <Route path="order-status" element={<OrderStatusPage />} />
+            <Route path="order-payment" element={<OrderPaymentPage />} />
+            <Route path="*" element={<ErrorPage />} />
+          </Routes>
+        </CarServiceContextProvider>
       </ToggleDrawerContextProvider>
     </section>
   )
